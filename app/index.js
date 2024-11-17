@@ -11,10 +11,18 @@ import ToDoForm from "../components/ToDoForm";
 
 function App() {
     const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk dog"]);
+
+    const addTask = (taskText) => {
+        if (taskText.trim() === "" || tasks.includes(taskText)) {
+            return;
+        }
+        setTasks([...tasks, taskText.trim()]);
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <ToDoList tasks={tasks} />
-            <ToDoForm />
+            <ToDoForm addTask={addTask} />
         </SafeAreaView>
     );
 }
@@ -22,6 +30,7 @@ function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff",
     },
 });
 

@@ -1,37 +1,39 @@
-/**
- * My To Do List App
- *
- * @format
- */
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./screens/HomeScreen";
+import AboutScreen from "./screens/AboutScreen";
 
-import React, { useState } from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
-import ToDoList from "../components/ToDoList";
-import ToDoForm from "../components/ToDoForm";
+const Stack = createStackNavigator();
 
 function App() {
-    const [tasks, setTasks] = useState(["Do laundry", "Go to gym", "Walk dog"]);
-
-    const addTask = (taskText) => {
-        if (taskText.trim() === "" || tasks.includes(taskText)) {
-            return;
-        }
-        setTasks([...tasks, taskText.trim()]);
-    };
-
     return (
-        <SafeAreaView style={styles.container}>
-            <ToDoList tasks={tasks} />
-            <ToDoForm addTask={addTask} />
-        </SafeAreaView>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName='Home'
+                screenOptions={{
+                    headerStyle: {
+                        backgroundColor: "#f8f8f8",
+                    },
+                    headerTintColor: "#000",
+                    headerTitleStyle: {
+                        fontWeight: "bold",
+                    },
+                }}
+            >
+                <Stack.Screen
+                    name='Home'
+                    component={HomeScreen}
+                    options={{ title: "Todo List" }}
+                />
+                <Stack.Screen
+                    name='About'
+                    component={AboutScreen}
+                    options={{ title: "About" }}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-    },
-});
 
 export default App;

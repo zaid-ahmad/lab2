@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "react-native";
+import MainLayout from "../layouts/MainLayout";
 import ToDoList from "../components/ToDoList";
 import ToDoForm from "../components/ToDoForm";
-import MainLayout from "../layouts/MainLayout";
 
 function HomeScreen({ navigation }) {
     const [tasks, setTasks] = React.useState([
